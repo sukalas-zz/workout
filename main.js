@@ -28,8 +28,8 @@ var main = function(){
 
 	cloudGenerator();
 
-	h.g("input-field").onkeydown = function(e){
-		if(e.keyCode == 13){// ENTER
+	document.body.onkeydown = function(e){
+		if(e.keyCode == 13 && h.g("input-field").value !==""){// ENTER
 		   	var output = filterInput("input-field");
 		    output = findAttribute(output.category);
 
