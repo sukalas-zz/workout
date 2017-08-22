@@ -5,23 +5,24 @@ var main = function(){
 	var category;
 	var index = false;
 
-	h.g("input-field").onkeydown = function(e){
-	   if(e.keyCode == 13){// ENTER KEY
-	   	var input = h.g("input-field").value;
+	var items = new Array();
+	var counter = 0;
 
+	h.g("input-field").onkeydown = function(e){
+	counter++;
+
+	   if(e.keyCode == 13){// ENTER 
+	   	var input = h.g("input-field").value;
 	   	index = input.indexOf("#");
-	   	console.log(index)
+	   	// console.log(index)
 
 	   	if(index>0){
-	   		console.log("hash found in the string")
+	   		// console.log("hash found in the string")
 			category =  input.substr(index+1);
 			input = input.substr(0, index);
 	   	}else{
 	   		category = "default";
 	   	}
-
-	   	console.log(category)
-		
 
 	   	switch(category){
 	   		case "t":
@@ -30,9 +31,8 @@ var main = function(){
 	   		default:
 	   			attribute = "li";
 	   	}
-	   	
-	   
-	   	var line = "<"+attribute+" class='list-group-item'>"+input+"<button class='close' id='delete' href='#'>&times;</button></"+attribute+">";
+	
+	   	var line = "<"+attribute+" class='list-group-item' id="+counter+">"+input+" <button class='close' href='#'>&times;</button></"+attribute+">";
 
 	    $("#content").append(line);
 
@@ -41,7 +41,8 @@ var main = function(){
 	};
 
 	$(document).on("click", ".close", function(){
-		$("#"+this.id).parent().remove();
+		var elem = h.g(this.parentElement.id);
+		$(elem).remove();
 	} );
 
 }
