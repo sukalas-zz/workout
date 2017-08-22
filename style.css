@@ -1,0 +1,7 @@
+#input-field{
+	line-height:2em;
+}
+#input,#output{
+	position:relative;
+	top:100px;
+}

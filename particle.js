@@ -1,0 +1,10 @@
+class Menu{
+  constructor() {
+
+  }
+  
+ display(){
+
+  }
+
+}
