@@ -1,7 +1,30 @@
+body{
+	background-color:rgba(0,0,0,0.1);
+}
+#title{
+	padding:15px;
+	text-align:center;
+}
 #input-field{
 	line-height:2em;
 }
 #input,#output{
 	position:relative;
-	top:100px;
+	top:50px;
+}
+
+.cloud-spans{
+	position:relative;
+	background-color: rgba(255, 255, 255, .3);
+	border-radius: 5px;
+	border:1px solid rgba(0,0,0,0);
+	float:left;
+	margin-left: 5px;
+	margin-top: 5px;
+	padding:7px;
+	transition: .25s background-color;
+}
+.cloud-spans:hover{
+	cursor:pointer;
+	background-color: rgba(255, 255, 255, .5);
 }
