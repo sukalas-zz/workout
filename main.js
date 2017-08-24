@@ -1,8 +1,8 @@
 var main = function(){
 	var h = new helpers();
-	var line = "<li class='list-group-item'><button class='close' id='delete' href='#'>&times;</button></li>";
+	var line;
 	var attribute = "li";
-	var content = {input:"", category:""};
+	var content = {id:"", input:"", category:"", numbers:"", index:"", colored:false};
 	var index = false;
 
 	var items = new Array();
@@ -28,6 +28,8 @@ var main = function(){
 
 	cloudGenerator();
 
+
+	//WHEN ENTER KEY IS PRESSED
 	document.body.onkeydown = function(e){
 		if(e.keyCode == 13 && h.g("input-field").value !==""){// ENTER
 		   	var output = filterInput("input-field");
@@ -37,29 +39,46 @@ var main = function(){
 		    var line = schedule.display(counter);
 
 		   	if(output){
-		   		counter++
 		   		$("#content").append(line);
 		   		items[counter] = output;
 		   	}
-			 h.g("input-field").value = "";
+
+	        var numbers = output.numbers;
+	        output.id = "#content #task_"+counter;
+
+	        var replace = "'\\/word\\:\\w*$'";
+			var regex = new RegExp(replace, "g");
+
+	        for(number in numbers){
+	        		$(output.id).html($(output.id).html().replace(output.numbers[number], function(){
+	        			
+	        			// if(output.numbers[number]===
+
+	        			var string = "<span class='highlight'>"+output.numbers[number]+"</span>";
+	        			return string;
+	        		}));
+	        }
+			$(output.id).append(schedule.closeButton);
+
+			h.g("input-field").value = "";
+			counter++;
 		}
 	};
 
-	$(document).on("click", ".close", function(){
-		var elem = h.g(this.parentElement.id);
-		$(elem).remove();
-		items.splice(elem, 1);
-	} );	
-	$(document).on("click", ".cloud-spans", function(){
-		var elem = this.innerHTML;
-		h.g("input-field").value += " "+elem;
-	} );
-
+//UTILITIES
 
 	function filterInput(target){
+		var sNumbers =  new Array();
+
 		content.input = h.g(target).value;
-		console.log(content.input)
 		index = content.input.indexOf("#");
+
+		var numbers = content.input.match(/\d+/g);
+
+		content.numbers = numbers;
+
+		content.id = counter;		
+
 		if(index>0){
 			content.category = content.input.substr(index+1);
 			content.input = content.input.substr(0, index);
@@ -82,6 +101,7 @@ var main = function(){
 	   	}
 	   	return content;
    	}
+
 	function cloudGenerator(){
 		for(var i=0;i<10;i++){
 			var element = h.c("span");
@@ -90,5 +110,19 @@ var main = function(){
 			h.g("cloud").append(element);
 		}
 	}
+
+
+//LISTENERS
+
+	$(document).on("click", ".close", function(){
+		var elem = h.g(this.parentElement.id);
+		$(elem).remove();
+		items.splice(elem, 1);
+	} );	
+	
+	$(document).on("click", ".cloud-spans", function(){
+		var elem = this.innerHTML;
+		h.g("input-field").value += " "+elem;
+	} );
 
 }
