@@ -6,11 +6,11 @@
 
 ### Available commands:
 
-1. t (title)
-2. u (list = default)
+1. #t (title)
+2. #u (list = default)
 
 
-The project if a proof of concept for now, I will move it further if I see further usage.
+The project if a proof of concept for now, I will progress it further if I see further usage for it.
 
 Check it out [here](https://sukalas.github.io/workout/)
 
