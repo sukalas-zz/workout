@@ -2,7 +2,8 @@
 
 ## Instructions:
 
-- adding a hashtag at the end of the sentence and character from the list bellow will style the sentence accordingly.
+- Add a hashtag at the end of the sentence followed by a character from the list bellow.
+  This will style the sentence accordingly.
 
 ### Available commands:
 
